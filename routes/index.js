@@ -5,7 +5,7 @@ var request = require('');
 
 const appId = 'wx7d3ec512a433852a';
 const appSecret = 'f55f6e1b4902ea8426c9b61ea3156d93';
-const TOKEN = 'quanru';
+const TOKEN = 'quanrutt';
 
 function checkSignature(params,token){
     //将token (自己设置的) 、timestamp(时间戳)、nonce(随机数)三个参数进行字典排序
