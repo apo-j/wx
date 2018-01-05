@@ -11,7 +11,7 @@ router.get('/hello', function(req, res) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const code = req.params('code');
+  const code = req.params['code'];
   //const url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appId}&secret=${appSecret}&code=${code}&grant_type=authorization_code`;
 
   res.render('index', { title: 'Express' });
