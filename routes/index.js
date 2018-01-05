@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var request = require('');
+// https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index
 
 const appId = 'wx7d3ec512a433852a';
 const appSecret = 'f55f6e1b4902ea8426c9b61ea3156d93';
@@ -33,10 +35,17 @@ router.get('/wx', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-        const code = req.params['code'];
+        const code = req.query['code'];
         const url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appId}&secret=${appSecret}&code=${code}&grant_type=authorization_code`;
 
-        res.render('index', { title: 'Express' });
+        request(url, function (error, response, body) {
+            if(error){
+                res.render('index', { title: 'Express', content:  error});
+            }else{
+                res.render('index', { title: 'Express', content:  body});
+            }
+        });
+
 });
 
 module.exports = router;
