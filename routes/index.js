@@ -3,7 +3,7 @@ var router = express.Router();
 
 const appId = 'wx7d3ec512a433852a';
 const appSecret = 'f55f6e1b4902ea8426c9b61ea3156d93';
-const token = 'token';
+const TOKEN = 'quanru';
 
 function checkSignature(params,token){
     //将token (自己设置的) 、timestamp(时间戳)、nonce(随机数)三个参数进行字典排序
@@ -23,19 +23,9 @@ router.get('/hello', function(req, res) {
 
 /* GET home page. */
 router.get('/wx', function(req, res, next) {
-    var token = "quanru";
-    var signature = req.query.signature;
-    var timestamp = req.query.timestamp;
-    var echostr = req.query.echostr;
-    var nonce = req.query.nonce;
-    var oriArray = [nonce, timestamp, token];
-    oriArray.sort();
-    var original = oriArray.join('');
-    var shaObj = new jsSHA(original, 'TEXT');
-    var scyptoString = shaObj.getHash('SHA-1', 'HEX');
-    if (signature == scyptoString) {
+    if (checkSignature(req.query,TOKEN)) {
         //验证成功
-        res.send(echostr);
+        res.send(req.query.echostr);
     } else {
         //验证失败
         res.send(false);
