@@ -1,6 +1,6 @@
 {
   "apps" : [{
     "name"       : "server",
-    "script"      : "bin/www"
+    "script"      : "src/bin/www"
   }]
 }
