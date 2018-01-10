@@ -11,7 +11,9 @@ FROM node:latest
 
 # make sure apt is up to date
 RUN    apt-get -y update
-
+ENV    VIRTUAL_HOST=twx.soyou.io
+ENV    LETSENCRYPT_HOST=twx.soyou.io
+ENV    LETSENCRYPT_EMAIL=contact@soyou.io
 # cache package.json and node_modules to speed up builds
 ADD     package.json package.json
 RUN     npm install
@@ -29,4 +31,4 @@ RUN cd /src; npm install --silent
 CMD ["pm2", "start", "/src/process.json", "--no-daemon"]
 #CMD ["nodejs", "/src/server.js"]
 
-EXPOSE 3000
+EXPOSE 80

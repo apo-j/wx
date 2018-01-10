@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var request = require('');
+var request = require('request');
 // https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index
 
 const appId = 'wx7d3ec512a433852a';
