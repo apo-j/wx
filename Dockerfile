@@ -32,4 +32,3 @@ CMD ["pm2", "start", "/src/process.json", "--no-daemon"]
 #CMD ["nodejs", "/src/server.js"]
 
 EXPOSE 80
-EXPOSE 443
